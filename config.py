@@ -73,6 +73,7 @@ PRE_LOG = environ.get("PRE_LOG", "")
 # Get these values from my.telegram.org
 APP_ID = int(environ.get("APP_ID", 1234))
 API_HASH = environ.get("API_HASH", "")
+MOLY_LINKLERI = list(set(x for x in environ.get("MOLY_LINKLERI", ".cloud").split()))
 OWNER_ID = int(environ.get("OWNER_ID", "1276627253"))
 STRING_SESSION = environ.get("STRING_SESSION", "")
 if len(STRING_SESSION) != 0:
