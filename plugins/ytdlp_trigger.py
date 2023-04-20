@@ -191,7 +191,7 @@ async def echo(bot, update):
     if yt_dlp_password is not None:
         command_to_exec.append("--password")
         command_to_exec.append(yt_dlp_password)
-    if MOLY_LINKLERI != 0:
+    if len(MOLY_LINKLERI) != 0:
         for ref in MOLY_LINKLERI:
             if f"{ref}" in url:
                 command_to_exec.append("--referer")
