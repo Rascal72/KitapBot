@@ -286,11 +286,11 @@ async def yt_dlp_call_back(bot, update):
     if yt_dlp_password is not None:
         command_to_exec.append("--password")
         command_to_exec.append(yt_dlp_password)
-    if MOLY_LINKLERI != 0:
+    if len(MOLY_LINKLERI) != 0:
         for ref in MOLY_LINKLERI:
             if f"{ref}" in yt_dlp_url:
-            command_to_exec.append("--referer")
-            command_to_exec.append("https://vidmoly.to/")
+                command_to_exec.append("--referer")
+                command_to_exec.append("https://vidmoly.to/")
     LOGGER.info(command_to_exec)
     start = datetime.now()
     start1 = time.time() 
