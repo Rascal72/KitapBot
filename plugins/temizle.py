@@ -18,7 +18,7 @@ async def dosyasil(dosyaYolu, message, textim):
                 os.remove(dosyaYolu)
                 textim += f"{dosyaYolu}"
             elif os.path.isdir(dosyaYolu):
-                dosyasil(dosyaYolu, message, textim)
+                await dosyasil(dosyaYolu, message, textim)
         except Exception as hata:
             await message.reply_text(hata)
 
