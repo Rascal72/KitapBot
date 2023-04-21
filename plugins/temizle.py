@@ -47,3 +47,53 @@ async def get_directory(bot, message):
                         say) + " Tane Dosya Var.")
     except Exception as e:
         await message.reply_text(e) 
+
+@Client.on_message(filters.command('del'))
+async def deldirectory(bot, message):
+    try:
+        text = message.text.split(" ", 1)
+        if len(text) < 2:
+            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/del downloads`") 
+            return
+        msg = await message.reply_text("`Siliyorum..`") 
+        for files in os.listdir(text[1]):
+            os.remove(f"{text[1]}/{files}")
+        await msg.edit(f"`{text[1]} Klasörü Başarıyla Silindi..`")
+    except Exception as e:
+        await message.reply_text(e) 
+
+@Client.on_message(filters.command('get'))
+async def get_directoryyy(bot, message):
+    try:
+        text = message.text.split(" ", 1)
+        if len(text) < 2:
+            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/get downloads`") 
+            return
+        directory = text[1]
+        if 1 == 1:
+            if not os.listdir(directory):
+                await message.reply(f"{directory} klasörünüz boş")
+            else:
+                dsy = ""
+                say = 0
+                for files in os.listdir(directory):
+                    say += 1
+                    dsy = dsy + "  " + str(say) + "-) " + f"`{directory}/{files}`" + '\n'
+                await message.reply_text(
+                    f"{directory} Klasöründeki Dosyalar." + "\n\n" + dsy + "\n" + str(
+                        say) + " Tane Dosya Var.")
+    except Exception as e:
+        await message.reply_text(e)
+
+@Client.on_message(filters.command('delfile'))
+async def delfilllee(bot, message):
+    try:
+        text = message.text.split(" ", 1)
+        if len(text) < 2:
+            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/del downloads/RTE Twerk Yapıyor.mp4`") 
+            return
+        msg = await message.reply_text("`Siliyorum..`") 
+        os.remove(f"{text[1]}")
+        await msg.edit(f"`{text[1]} Dosyası Başarıyla Silindi..`")
+    except Exception as e:
+        await message.reply_text(e)
