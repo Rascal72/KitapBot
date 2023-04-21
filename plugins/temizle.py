@@ -1,0 +1,46 @@
+from pyrogram import Client, filters
+import os
+from config import Config
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
+import time
+import logging 
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
+                    level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
+
+
+@Client.on_message(filters.command('temizle'))
+async def deldirectory(bot, message):
+    try:
+        text = "downloads"
+        msg = await message.reply_text("`Siliyorum..`") 
+        for files in os.listdir(text):
+            os.remove(f"{text}/{files}")
+        await msg.edit(f"`{text} Klasörü Başarıyla Silindi..`")
+    except Exception as e:
+        await message.reply_text(e) 
+
+@Client.on_message(filters.command('indirilenler'))
+async def get_directory(bot, message):
+    try:
+        text = message.text.split(" ", 1)
+        if len(text) < 2:
+            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/get downloads`") 
+            return
+        directory = text[1]
+        if 1 == 1:
+            if not os.listdir(directory):
+                await message.reply(f"{directory} klasörünüz boş")
+            else:
+                dsy = ""
+                say = 0
+                for files in os.listdir(directory):
+                    say += 1
+                    dsy = dsy + "  " + str(say) + "-) " + f"`{directory}/{files}`" + '\n'
+                await message.reply_text(
+                    f"{directory} Klasöründeki Dosyalar." + "\n\n" + dsy + "\n" + str(
+                        say) + " Tane Dosya Var.")
+    except Exception as e:
+        await message.reply_text(e) 
