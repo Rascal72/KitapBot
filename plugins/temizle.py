@@ -20,18 +20,13 @@ async def dosyasil(dosyaYolu, message, textim):
                 textim += f"{dosyaYolu}\n"
             elif os.path.isdir(dosyaYolu):
                 for i in os.listdir(dosyaYolu):
-                    text = dosyaYolu
+                    text = f"{dosyaYolu}"
                     dosyaYolu = os.path.join(text, i)
                     if os.path.isfile(dosyaYolu):
                         os.remove(dosyaYolu)
                         textim += f"{dosyaYolu}\n"
-                    elif os.path.isdir(dosyaYolu):
-                        for i in os.listdir(dosyaYolu):
-                            text = dosyaYolu
-                            dosyaYolu = os.path.join(text, i)
-                            if os.path.isfile(dosyaYolu):
-                                os.remove(dosyaYolu)
-                                textim += f"{dosyaYolu}\n"      
+                    else:
+                        await message.reply_text("Silemiyom aq..")
         except Exception as hata:
             await message.reply_text(hata)
 
