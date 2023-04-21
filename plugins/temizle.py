@@ -56,6 +56,7 @@ async def deldirecttory(bot, message):
                 await message.reply_text(hata)
         for sil in silinecekler:
             await message.reply_text(sil)
+            os.remove(sil)
         await msg.edit(f"Dosyaları Başarıyla Silindi..")
         await message.reply_text("Şimdi Botu Resetliyorum..")
         try:
