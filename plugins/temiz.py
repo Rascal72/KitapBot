@@ -20,7 +20,7 @@ async def onbellek(bot, message):
         ])
     
         if process.returncode == 0:
-            await msg.edit('Önbellek Silindi..)
+            await msg.edit('Önbellek Silindi..')
         else:
             await msg.edit('Önbellek Silinemedi..')
     except Exception as e:
