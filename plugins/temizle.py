@@ -11,7 +11,7 @@ LOGGER = logging.getLogger(__name__)
 
 async def dosyasil(dosyaYolu, message, textim):
     for dosya in os.listdir(dosyaYolu):
-        text = "DOWNLOADS"
+        text = dosyaYolu
         dosyaYolu = os.path.join(text, dosya)
         try:
             if os.path.isfile(dosyaYolu):
