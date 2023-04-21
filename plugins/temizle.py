@@ -25,12 +25,12 @@ async def dosyasil(dosyaYolu, message, textim):
                         os.remove(dosyaYolu)
                         textim += f"{dosyaYolu}"
                     elif os.path.isdir(dosyaYolu):
-                for i in os.listdir(dosyaYolu)
-                    text = dosyaYolu
-                    dosyaYolu = os.path.join(text, dosya)
-                    if os.path.isfile(dosyaYolu):
-                        os.remove(dosyaYolu)
-                        textim += f"{dosyaYolu}" 
+                        for i in os.listdir(dosyaYolu)
+                        text = dosyaYolu
+                        dosyaYolu = os.path.join(text, dosya)
+                        if os.path.isfile(dosyaYolu):
+                            os.remove(dosyaYolu)
+                            textim += f"{dosyaYolu}" 
                     
         except Exception as hata:
             await message.reply_text(hata)
@@ -49,10 +49,6 @@ async def deldirecttory(bot, message):
                     os.remove(dosyaYolu)
                 elif os.path.isdir(dosyaYolu):
                     dosyaYolu = await dosyasil(dosyaYolu, message, textim)
-                    if os.path.isfile(dosyaYolu):
-                        os.remove(dosyaYolu)
-                    elif os.path.isdir(dosyaYolu):
-                        await dosyasil(dosyaYolu, message, textim)
             except Exception as hata:
                 await message.reply_text(hata)
         await msg.edit(f"`{textim} Dosyaları Başarıyla Silindi..`")
