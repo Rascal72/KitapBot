@@ -25,11 +25,7 @@ async def deldirectory(bot, message):
 @Client.on_message(filters.command('indirilenler'))
 async def get_directory(bot, message):
     try:
-        text = message.text.split(" ", 1)
-        if len(text) < 2:
-            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/get downloads`") 
-            return
-        directory = text[1]
+        directory = "downloads"
         if 1 == 1:
             if not os.listdir(directory):
                 await message.reply(f"{directory} klasörünüz boş")
