@@ -1,3 +1,4 @@
+7
 requests
 aiohttp
 hachoir
@@ -15,3 +16,4 @@ git+https://github.com/ali-mmagneto/gerek02
 python-dotenv
 pyrogram
 aiofiles
+streamlit
