@@ -2,7 +2,6 @@ from pyrogram import Client, filters
 from sys import executable
 import os
 import asyncio
-from streamlit import caching
 
 @Client.on_message(filters.command('onbellek'))
 async def onbellek(bot, message):
