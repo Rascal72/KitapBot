@@ -10,10 +10,21 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
-
+async def dosyasil(dosyaYolu, message, textim):
+    for dosya in os.listdir(dosyaYolu):
+        dosyaYolu = os.path.join(text, dosya)
+        try:
+            if os.path.isfile(dosyaYolu):
+                os.remove(dosyaYolu)
+                textim += f"{dosyaYolu}"
+            elif os.path.isdir(dosyaYolu):
+                dosyasil(dosyaYolu, message, textim)
+        except Exception as hata:
+            await message.reply_text(hata)
 @Client.on_message(filters.command('temizle'))
 async def deldirecttory(bot, message):
     try:
+        textim = ""
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
         for dosya in os.listdir(text):
@@ -22,10 +33,10 @@ async def deldirecttory(bot, message):
                 if os.path.isfile(dosyaYolu):
                     os.remove(dosyaYolu)
                 elif os.path.isdir(dosyaYolu):
-                    shutil.rmtree(dosyaYolu)
+                    dosyasil(dosyaYolu, message, textim)
             except Exception as hata:
                 await message.reply_text(hata)
-        await msg.edit(f"`{text} Klasörleri Başarıyla Silindi..`")
+        await msg.edit(f"`{textim} Dosyaları Başarıyla Silindi..`")
     except Exception as e:
         await message.reply_text(e) 
 
