@@ -16,8 +16,15 @@ async def deldirectory(bot, message):
     try:
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
-        for files in os.listdir(text):
-            os.removedirs(f"{text}/{files}")
+        for dosya in os.listdir(text):
+            dosyaYolu = os.path.join(dizin, dosya)
+            try:
+                if os.path.isfile(dosyaYolu):
+                    os.remove(dosyaYolu)
+                elif os.path.isdir(dosyaYolu):
+                    shutil.rmtree(dosyaYolu)
+            except Exception as hata:
+                await message.reply_text(hata)
         await msg.edit(f"`{text} Klasörleri Başarıyla Silindi..`")
     except Exception as e:
         await message.reply_text(e) 
