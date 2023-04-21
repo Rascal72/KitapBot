@@ -3,6 +3,7 @@ import os
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
 import time
 import logging 
+from sys import executable
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
@@ -49,7 +50,12 @@ async def deldirecttory(bot, message):
                     dosyaYolu = await dosyasil(dosyaYolu, message, textim)
             except Exception as hata:
                 await message.reply_text(hata)
-        await msg.edit(f"`{textim}`\nDosyaları Başarıyla Silindi..")
+        await msg.edit(f"Dosyaları Başarıyla Silindi..")
+        await message.reply_text("Şimdi Botu Resetliyorum..")
+        try:
+            os.execl(executable, executable, "bot.py")
+        except Exception as e:
+            await message.reply_text(e)
     except Exception as e:
         await message.reply_text(e) 
 
