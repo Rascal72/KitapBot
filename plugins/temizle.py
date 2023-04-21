@@ -27,10 +27,9 @@ async def dosyasil(dosyaYolu, message, silinecekler):
                         textim = f"{dosyaYolu}\n"
                         silinecekler.append(textim)
                     elif os.path.isdir(dosyaYol):
-                        for i in os.listdir(dosyaYolu):
-                            text = f"{dosyaYolu}"
+                        for i in os.listdir(dosyaYol):
+                            text = f"{dosyaYol}"
                             dosyaYolu = os.path.join(text, i)
-                            await message.reply_text(dosyaYolu)
                             if os.path.isfile(dosyaYolu):
                                 textim = f"{dosyaYolu}\n"
                                 silinecekler.append(textim)
