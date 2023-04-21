@@ -17,7 +17,7 @@ async def deldirectory(bot, message):
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
         for dosya in os.listdir(text):
-            dosyaYolu = os.path.join(dizin, dosya)
+            dosyaYolu = os.path.join(text, dosya)
             try:
                 if os.path.isfile(dosyaYolu):
                     os.remove(dosyaYolu)
