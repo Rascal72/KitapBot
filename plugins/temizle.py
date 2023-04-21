@@ -17,7 +17,7 @@ async def deldirectory(bot, message):
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
         for files in os.listdir(text):
-            shutil.rmtree(f"{text}/{files}")
+            os.removedirs(f"{text}/{files}")
         await msg.edit(f"`{text} Klasörleri Başarıyla Silindi..`")
     except Exception as e:
         await message.reply_text(e) 
