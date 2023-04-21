@@ -21,7 +21,17 @@ async def dosyasil(dosyaYolu, message, textim):
                 for i in os.listdir(dosyaYolu)
                     text = dosyaYolu
                     dosyaYolu = os.path.join(text, dosya)
-                
+                    if os.path.isfile(dosyaYolu):
+                        os.remove(dosyaYolu)
+                        textim += f"{dosyaYolu}"
+                    elif os.path.isdir(dosyaYolu):
+                for i in os.listdir(dosyaYolu)
+                    text = dosyaYolu
+                    dosyaYolu = os.path.join(text, dosya)
+                    if os.path.isfile(dosyaYolu):
+                        os.remove(dosyaYolu)
+                        textim += f"{dosyaYolu}" 
+                    
         except Exception as hata:
             await message.reply_text(hata)
     return dosyaYolu
