@@ -1,6 +1,5 @@
 from pyrogram import Client, filters
 import os
-from config import Config
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
 import time
 import logging 
