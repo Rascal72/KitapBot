@@ -14,11 +14,6 @@ async def onbellek(bot, message):
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
             )
-        await asyncio.wait([
-            read_stderr(start,msg, process),
-            process.wait(),
-        ])
-    
         if process.returncode == 0:
             await msg.edit('Önbellek Silindi..')
         else:
