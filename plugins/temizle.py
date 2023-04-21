@@ -2,7 +2,6 @@ from pyrogram import Client, filters
 import os
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
 import time
-import shutil
 import logging 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -21,7 +20,8 @@ async def dosyasil(dosyaYolu, message, textim):
                 dosyasil(dosyaYolu, message, textim)
         except Exception as hata:
             await message.reply_text(hata)
-@Client.on_message(filters.command('temizle'))
+
+@Client.on_message(filters.command('diskisil'))
 async def deldirecttory(bot, message):
     try:
         textim = ""
@@ -37,39 +37,6 @@ async def deldirecttory(bot, message):
             except Exception as hata:
                 await message.reply_text(hata)
         await msg.edit(f"`{textim} Dosyaları Başarıyla Silindi..`")
-    except Exception as e:
-        await message.reply_text(e) 
-
-@Client.on_message(filters.command('indirilenler'))
-async def get_directory(bot, message):
-    try:
-        directory = "DOWNLOADS"
-        if 1 == 1:
-            if not os.listdir(directory):
-                await message.reply(f"{directory} klasörünüz boş")
-            else:
-                dsy = ""
-                say = 0
-                for files in os.listdir(directory):
-                    say += 1
-                    dsy = dsy + "  " + str(say) + "-) " + f"`{directory}/{files}`" + '\n'
-                await message.reply_text(
-                    f"{directory} Klasöründeki Dosyalar." + "\n\n" + dsy + "\n" + str(
-                        say) + " Tane Dosya Var.")
-    except Exception as e:
-        await message.reply_text(e) 
-
-@Client.on_message(filters.command('del'))
-async def deldirectorry(bot, message):
-    try:
-        text = message.text.split(" ", 1)
-        if len(text) < 2:
-            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/del downloads`") 
-            return
-        msg = await message.reply_text("`Siliyorum..`") 
-        for files in os.listdir(text[1]):
-            os.remove(f"{text[1]}/{files}")
-        await msg.edit(f"`{text[1]} Klasörü Başarıyla Silindi..`")
     except Exception as e:
         await message.reply_text(e) 
 
@@ -93,18 +60,5 @@ async def get_directoryyy(bot, message):
                 await message.reply_text(
                     f"{directory} Klasöründeki Dosyalar." + "\n\n" + dsy + "\n" + str(
                         say) + " Tane Dosya Var.")
-    except Exception as e:
-        await message.reply_text(e)
-
-@Client.on_message(filters.command('delfile'))
-async def delfilllee(bot, message):
-    try:
-        text = message.text.split(" ", 1)
-        if len(text) < 2:
-            await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/del downloads/RTE Twerk Yapıyor.mp4`") 
-            return
-        msg = await message.reply_text("`Siliyorum..`") 
-        os.remove(f"{text[1]}")
-        await msg.edit(f"`{text[1]} Dosyası Başarıyla Silindi..`")
     except Exception as e:
         await message.reply_text(e)
