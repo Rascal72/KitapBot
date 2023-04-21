@@ -34,7 +34,7 @@ async def deldirecttory(bot, message):
                 if os.path.isfile(dosyaYolu):
                     os.remove(dosyaYolu)
                 elif os.path.isdir(dosyaYolu):
-                    dosyasil(dosyaYolu, message, textim)
+                    await dosyasil(dosyaYolu, message, textim)
             except Exception as hata:
                 await message.reply_text(hata)
         await msg.edit(f"`{textim} Dosyaları Başarıyla Silindi..`")
