@@ -21,12 +21,12 @@ async def dosyasil(dosyaYolu, message, textim):
             elif os.path.isdir(dosyaYolu):
                 for i in os.listdir(dosyaYolu):
                     text = f"{dosyaYolu}"
-                    dosyaYolu = os.path.join(text, i)
-                    await message.reply_text(dosyaYolu)
-                    if os.path.isfile(dosyaYolu):
-                        os.remove(dosyaYolu)
-                        textim += f"{dosyaYolu}\n"
-                    elif os.path.isdir(dosyaYolu):
+                    dosyaYol = os.path.join(text, i)
+                    await message.reply_text(dosyaYol)
+                    if os.path.isfile(dosyaYol):
+                        os.remove(dosyaYol)
+                        textim += f"{dosyaYol}\n"
+                    elif os.path.isdir(dosyaYol):
                         for i in os.listdir(dosyaYolu):
                             text = f"{dosyaYolu}"
                             dosyaYolu = os.path.join(text, i)
