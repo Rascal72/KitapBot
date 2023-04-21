@@ -10,7 +10,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
-async def dosyasil(dosyaYolu, message, textim):
+async def dosyasil(dosyaYolu, message, silinecekler):
     for dosya in os.listdir(dosyaYolu):
         text = dosyaYolu
         dosyaYolu = os.path.join(text, dosya)
@@ -24,16 +24,16 @@ async def dosyasil(dosyaYolu, message, textim):
                     dosyaYol = os.path.join(text, i)
                     await message.reply_text(dosyaYol)
                     if os.path.isfile(dosyaYol):
-                        os.remove(dosyaYol)
-                        textim += f"{dosyaYol}\n"
+                        textim = f"{dosyaYolu}\n"
+                        silinecekler.append(textim)
                     elif os.path.isdir(dosyaYol):
                         for i in os.listdir(dosyaYolu):
                             text = f"{dosyaYolu}"
                             dosyaYolu = os.path.join(text, i)
                             await message.reply_text(dosyaYolu)
                             if os.path.isfile(dosyaYolu):
-                                os.remove(dosyaYolu)
-                                textim += f"{dosyaYolu}\n"
+                                textim = f"{dosyaYolu}\n"
+                                silinecekler.append(textim)
                             else:
                                 await message.reply_text("Silemiyom aq..")
         except Exception as hata:
@@ -42,18 +42,21 @@ async def dosyasil(dosyaYolu, message, textim):
 @Client.on_message(filters.command('diskisil'))
 async def deldirecttory(bot, message):
     try:
-        textim = ""
+        silinecekler = []
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
         for dosya in os.listdir(text):
             dosyaYolu = os.path.join(text, dosya)
             try:
                 if os.path.isfile(dosyaYolu):
-                    os.remove(dosyaYolu)
+                    textim = f"{dosyaYolu}"
+                    silinecekler.append(textim)
                 elif os.path.isdir(dosyaYolu):
-                    dosyaYolu = await dosyasil(dosyaYolu, message, textim)
+                    dosyaYolu = await dosyasil(dosyaYolu, message, silinecekler)
             except Exception as hata:
                 await message.reply_text(hata)
+        for sil in silinecekler:
+            await message.reply_text(sil)
         await msg.edit(f"Dosyaları Başarıyla Silindi..")
         await message.reply_text("Şimdi Botu Resetliyorum..")
         try:
