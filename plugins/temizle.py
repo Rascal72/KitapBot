@@ -12,7 +12,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 @Client.on_message(filters.command('temizle'))
-async def deldirectory(bot, message):
+async def deldirecttory(bot, message):
     try:
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
@@ -49,7 +49,7 @@ async def get_directory(bot, message):
         await message.reply_text(e) 
 
 @Client.on_message(filters.command('del'))
-async def deldirectory(bot, message):
+async def deldirectorry(bot, message):
     try:
         text = message.text.split(" ", 1)
         if len(text) < 2:
