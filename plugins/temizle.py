@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 import os
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
 import time
+import shutil
 import logging 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -16,8 +17,8 @@ async def deldirectory(bot, message):
         text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
         for files in os.listdir(text):
-            os.remove(f"{text}/{files}")
-        await msg.edit(f"`{text} Klasörü Başarıyla Silindi..`")
+            shutil.rmtree(f"{text}/{files}")
+        await msg.edit(f"`{text} Klasörleri Başarıyla Silindi..`")
     except Exception as e:
         await message.reply_text(e) 
 
