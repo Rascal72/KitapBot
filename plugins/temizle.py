@@ -13,7 +13,7 @@ LOGGER = logging.getLogger(__name__)
 @Client.on_message(filters.command('temizle'))
 async def deldirectory(bot, message):
     try:
-        text = "downloads"
+        text = "DOWNLOADS"
         msg = await message.reply_text("`Siliyorum..`") 
         for files in os.listdir(text):
             os.remove(f"{text}/{files}")
@@ -24,7 +24,7 @@ async def deldirectory(bot, message):
 @Client.on_message(filters.command('indirilenler'))
 async def get_directory(bot, message):
     try:
-        directory = "downloads"
+        directory = "DOWNLOADS"
         if 1 == 1:
             if not os.listdir(directory):
                 await message.reply(f"{directory} klasörünüz boş")
