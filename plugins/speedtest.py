@@ -9,7 +9,7 @@ from pyrogram.types import Message
 from config import OWNER_ID
 
 
-@Client.on_message(filters.command("speedtest") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("speedtest"))
 async def run_speedtest(c: Client, m: Message):
     hiztesti = await m.reply_text("`⚡️ Hız Testi Yapılıyor`")
     try:
