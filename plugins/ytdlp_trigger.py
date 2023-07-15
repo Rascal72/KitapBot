@@ -173,6 +173,9 @@ async def echo(bot, update):
     if ".space" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
+    if "gomindex" in url:
+        command_to_exec.append("--referer")
+        command_to_exec.append("https://play.dizigom.tv/")
     if ".lat" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
